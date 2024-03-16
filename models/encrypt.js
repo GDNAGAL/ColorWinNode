@@ -37,7 +37,11 @@ exports.decryptToObject=(encryptedText)=>{
     const encryptedData = encryptedText.slice(32);
 
     const decipher = crypto.createDecipheriv('aes-256-cbc', Buffer.from(secretKey), iv);
-    let decrypted = decipher.update(encryptedData, 'hex', 'utf8');
-    decrypted += decipher.final('utf8');
-    return JSON.parse(decrypted);
+    try{
+        let decrypted = decipher.update(encryptedData, 'hex', 'utf8');
+        decrypted += decipher.final('utf8');
+        return JSON.parse(decrypted);
+    }catch{
+        return error;
+    }
 }

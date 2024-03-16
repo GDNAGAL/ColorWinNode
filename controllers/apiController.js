@@ -5,8 +5,10 @@ const moment = require('moment-timezone');
 const timeNow = moment.tz('Asia/Kolkata').format('YYYY-MM-DD HH:mm:ss');
 
 exports.login = (req, res) => {
+    const clientIP = req.ip;
     const { Username, Password } = req.body; 
     const hashPassword = enc.encrypt(Password);
+
     // Query the database to find a user with the provided username and password
     db.query('SELECT * FROM users WHERE Mobile = ? AND Password = ?', [Username, hashPassword], (err, rows) => {
         if (err) {
@@ -15,9 +17,59 @@ exports.login = (req, res) => {
         } else {
             if (rows.length > 0) {
                 // User with provided credentials found
-                rows[0].loginTime = timeNow;
-                const token = enc.encryptObject(rows[0]);
-                res.json({ Message: 'Login successful', Token: token});
+                const user = rows[0];
+                user.loginTime = timeNow;
+                const token = enc.encryptObject(user);
+
+                // Insert query to add a new user login record into the database
+                const insertQuery = 'INSERT INTO `users_logins`(`UserID`, `Token`, `CreatedAt`, `isActive`, `IP_Address`) VALUES (?, ?, ?, ?, ?)';
+                const insertValues = [user.ID, token, timeNow, 1, clientIP];
+
+                // Update query to update user login time and IP address
+                const updateQuery = 'UPDATE `users_logins` SET `isActive` = ? WHERE UserID = ?';
+                const updateValues = [0,user.ID];
+
+                db.beginTransaction(err => {
+                    if (err) {
+                        console.error(err);
+                        res.status(500).json({ Message: 'Internal Server Error' });
+                        return;
+                    }
+
+                    // Insert the new user login record
+                    db.query(updateQuery, updateValues, (err, result) => {
+                        if (err) {
+                            console.error(err);
+                            db.rollback(() => {
+                                res.status(500).json({ Message: 'Internal Server Error' });
+                            });
+                            return;
+                        }
+
+                        // Update the user login time and IP address
+                        db.query(insertQuery, insertValues, (err, result) => {
+                            if (err) {
+                                console.error(err);
+                                db.rollback(() => {
+                                    res.status(500).json({ Message: 'Internal Server Error' });
+                                });
+                                return;
+                            }
+
+                            db.commit(err => {
+                                if (err) {
+                                    console.error(err);
+                                    db.rollback(() => {
+                                        res.status(500).json({ Message: 'Internal Server Error' });
+                                    });
+                                    return;
+                                }
+
+                                res.json({ Message: 'Login successful', Token: token });
+                            });
+                        });
+                    });
+                });
             } else {
                 // No user found with provided credentials
                 res.status(401).json({ Message: 'Invalid username or password'});
@@ -25,6 +77,7 @@ exports.login = (req, res) => {
         }
     });
 };
+
 
 exports.register = (req, res) => {
     const { Mobile, Password, ConfirmPassword, InviteCode, AcceptPrivary } = req.body;

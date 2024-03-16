@@ -1,7 +1,6 @@
 // middleware/auth.js
-
-// const jwt = require('jsonwebtoken');
-// const config = require('config');
+const enc = require('../models/encrypt');
+const db = require('../models/database');
 
 module.exports = function(req, res, next) {
     //Get token from header
@@ -11,21 +10,53 @@ module.exports = function(req, res, next) {
     if (!token) {
         return res.redirect('/login?ReturnURL=' + encodeURIComponent(req.originalUrl));
     }
-
+    
     // Verify token
-    // try {
-    //     const decoded = verifyToken(token);
-    //     req.user = decoded.user;
-    //     next();
-    // } catch (err) {
-    //     res.redirect('/login?ReturnURL=' + encodeURIComponent(req.originalUrl));
-    // }
-    next();
+    try {
+        const user = enc.decryptToObject(token);
+        //req.user = decoded;
+
+        db.query('SELECT * FROM users_logins WHERE UserID = ? AND Token = ? AND isActive = ?', [user.ID, token, 1], (err, rows) => {
+            if (err) {
+                handleError(err)
+            } else {
+                if (rows.length > 0) {
+                    const procedureName = `user_GetUser`;
+                    db.query('CALL ??(?)', [procedureName, user.ID], (error, results, fields) => {
+                        if (error) {
+                            handleError(err)
+                        }else{
+                            if(results[0].length>0){
+                                req.userDetail = results[0];
+                                next();
+                            }else{
+                                handleUnauthorized()
+                            }
+                        }
+                    });
+                   
+                } else {
+                    handleError(err)
+                }
+            }
+        });
+    } catch(err) {
+        handleError(err) 
+    }
+
+    function handleError(error) {
+        console.error('Error:', error);
+        res.clearCookie('Token');
+        res.redirect('/login?ReturnURL=' + encodeURIComponent(req.originalUrl));
+        return;
+    }
+    
+    function handleUnauthorized() {
+        res.clearCookie('Token');
+        res.redirect('/login?ReturnURL=' + encodeURIComponent(req.originalUrl));
+        return;
+    }
+
 };
 
-function verifyToken(token){
-    let user = {
-        "name":"Gordhan"
-    }
-    return user;
-}
+

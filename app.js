@@ -22,15 +22,28 @@ app.get('/',(req, res)=>{
 })
 
 app.get('/wingo',auth,(req, res)=>{
-    res.render('wingo');
+    res.render('wingo',{user:req.userDetail});
+    console.log(req.userDetail)
 })
 
 app.get('/login',(req, res)=>{
+    const token = req.cookies.Token;
     const ReturnURL = req.query.ReturnURL;
+    if (token) {
+        if(ReturnURL){
+            return res.redirect(ReturnURL);
+        }else{
+            return res.redirect('/');
+        }
+    }
     res.render('login',{ ReturnURL: ReturnURL });
 })
 
 app.get('/register',(req, res)=>{
+    const token = req.cookies.Token;
+    if (token) {
+        return res.redirect('/');
+    }
     const inviteCode = req.query.inviteCode;
     res.render('register',{ inviteCode: inviteCode });
 })

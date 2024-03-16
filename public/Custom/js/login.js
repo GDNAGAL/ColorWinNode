@@ -44,15 +44,13 @@ function setCookie(name, value, days) {
         success: function(responseData){
             $('#loginForm')[0].reset();
             $('.load').addClass('d-none')
-            swalB.fire({
-                icon: "success",
-                text: responseData.Message
-              });
-            setCookie("Token", responseData.Token, 10)
-            if($('#returnURL').val()!=''){
-              location.href = $('#returnURL').val();
-            }else{
-              location.href = '/';
+            if(JSON.stringify(responseData).length>0){
+              setCookie("Token", responseData.Token, 10)
+              if($('#returnURL').val()!=''){
+                location.href = $('#returnURL').val();
+              }else{
+                location.href = '/';
+              }
             }
         },
         error : function(err){
