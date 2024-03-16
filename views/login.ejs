@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="Bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="Custom/Css/Style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    
+    <script src="Bootstrap/bootstrap.min.js"></script>
+    <script src="/Jquery/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div class="main">
+        <div class="container-fluid p-0 pb-4" style="margin-top:50px; min-height:100vh; background:#f7f8ff">
+            <div class="position-fixed topnavbar bg-primary">
+                <div class="navlogo">
+                    <a href="#" onclick="location.href = document.referrer; return false;"><img src="img/UI/icons8-back-50.png" style="cursor: pointer;" alt="" srcset=""></a>
+                    <img src="img/mainlogo.png" alt="">
+                </div>
+                <!-- <div class="content-right align-middle">
+                    <i class="fa fa-bell" aria-hidden="true"></i>
+                </div> -->
+            </div>
+            <div class="bg-primary p-4">
+                <h4 class="text-white">Log In</h4>
+                <p class="p-0 text-white m-0" style="font-size: 14px;">Please log in with your phone number</p>
+                <p class="p-0 text-white m-0" style="font-size: 14px;">If you forget your password, please contact customer service</p>
+            </div>
+            <div class="login-container m-4">
+                <form id="loginForm" autocomplete="off">
+                    <div class="mb-3">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAM1BMVEUAAABIgP9Hf/9HgP9If/9If/9Hf/9GgP9Hf/9Kgf9GgP9Hgf9Kf/9Qhv9HgP9HgP9Hgf8yzScUAAAAEHRSTlMAmXO/YEBOf1Yej98wE6+P35gKawAAAHZJREFUSMft0EsOgCAMRdECyh91/6t1RDSN8OpITLjDpmfyaOiC1418oYes6mTRPxZFgQIDHgHPgEZATzDBBH8Cr7MLaGXAHCDzKTB1mU0G1HVVInBbXItAWms2jbKSCOwIRAYyAoFYrv/viLDg/7wQTaOYaeRObJUeiXwXMZUAAAAASUVORK5CYII=" width="25px" height="25px">
+                        <label for="exampleInputEmail1" class="form-label">Mobile Number</label>
+                        <input type="number" class="form-control shadow-none p-2" id="MobileInput" placeholder="Enter Mobile Number" name="Username">
+                        <input type="hidden" id="returnURL" value="<%= ReturnURL %>">
+                    </div>
+                    <div class="mb-3">
+                        <img width="25px" height="25px" data-origin="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAARVBMVEUAAABIgP9Gf/9GgP9Hgf9HgP9HgP9Hgf9Hgf9If/9Gf/9JgP9Hf/9Hgf9Hgf9Hgf9HgP9Ggf9Ggf9Hf/9McP9HgP9Hgf8A23ijAAAAFnRSTlMAmSGDj3FB7985TBMQr6G/X89pVgq/Au04/QAAAS5JREFUSMfdlNkWgyAMRFkSkIK4lv//1CLt0cpWeO28iblMchgg/ym2rRwopRw31lAugH6JK1KXxlAHnCOHN6Kr9dyXoNKfL4UHsVeA2f9nt3n8Dmtl3LQDDZSymkEypKhZAOXJ2g4U9nJHa8a23JOiVGQO5uoz1sPvld3m0QWwMrD1AnM3YK1giZTNAwIW6QqSixWx7+R+aLhnbHCuixhdg6YvA9ekaw7eBlzJTCaWgGiTucYTWKI/YLLGwwnI1DpHyBO4rz+PY0RUaa8FQBwx9No81wQYomnQTkwTcAQ0iBHS6LC/Ad3oIMLdC7dgLgBpZtQ6H1kb8kD/OcQhsCHJBqLlpZLuicMky1lC1yQ8AdMGsM4bZ8kl03unCbO/6kcTPzQ4lh4mOYzIyB/pBbdnSf64MvFTAAAAAElFTkSuQmCC" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAARVBMVEUAAABIgP9Gf/9GgP9Hgf9HgP9HgP9Hgf9Hgf9If/9Gf/9JgP9Hf/9Hgf9Hgf9Hgf9HgP9Ggf9Ggf9Hf/9McP9HgP9Hgf8A23ijAAAAFnRSTlMAmSGDj3FB7985TBMQr6G/X89pVgq/Au04/QAAAS5JREFUSMfdlNkWgyAMRFkSkIK4lv//1CLt0cpWeO28iblMchgg/ym2rRwopRw31lAugH6JK1KXxlAHnCOHN6Kr9dyXoNKfL4UHsVeA2f9nt3n8Dmtl3LQDDZSymkEypKhZAOXJ2g4U9nJHa8a23JOiVGQO5uoz1sPvld3m0QWwMrD1AnM3YK1giZTNAwIW6QqSixWx7+R+aLhnbHCuixhdg6YvA9ekaw7eBlzJTCaWgGiTucYTWKI/YLLGwwnI1DpHyBO4rz+PY0RUaa8FQBwx9No81wQYomnQTkwTcAQ0iBHS6LC/Ad3oIMLdC7dgLgBpZtQ6H1kb8kD/OcQhsCHJBqLlpZLuicMky1lC1yQ8AdMGsM4bZ8kl03unCbO/6kcTPzQ4lh4mOYzIyB/pBbdnSf64MvFTAAAAAElFTkSuQmCC">
+                        <label for="exampleInputPassword1" class="form-label ">Password</label>
+                        <input type="password" class="form-control shadow-none p-2" id="PasswordInput" placeholder="Enter Password" name="Password">
+                    </div>
+                    <div class="mb-3 form-check">
+                      <input type="checkbox" class="form-check-input shadow-none" id="KeepMeLogin">
+                      <label class="form-check-label" for="KeepMeLogin">Remember password</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 shadow-none">Log In</button>
+                    <a href="register"><button type="button" class="btn btn-outline-primary mt-3 w-100 shadow-none">Register</button></a>
+                  </form>
+            </div>
+            <div class="d-flex text-center">
+                <div class="w-50 loginfooter">
+                    <div class="fpassword"></div>
+                    <span>Forgot password</span>
+                </div>
+                <div class="w-50 loginfooter">
+                    <div class="CService"></div>
+                    <span>Customer Service</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+<script src="Custom/js/login.js"></script>
+</html>
