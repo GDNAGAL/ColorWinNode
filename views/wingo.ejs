@@ -1,4 +1,7 @@
-<% const loginuser = user[0]%>
+<% 
+const loginuser = user[0]
+const totalWalletAmount = (loginuser.WalletAmount + loginuser.eWalletAmount).toFixed(2);
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,16 +28,16 @@
                     <img src="img/mainlogo.png" alt="">
                 </div>
                 <div class="content-right align-middle">
-                    <i class="fa fa-bell" aria-hidden="true"></i>
+                    <a href="messages"><i class="fa fa-bell" aria-hidden="true"></i></a>
                 </div>
             </div>
             <br>
             <div class="bg-primary walletDiv p-3 text-center" style="border-radius: 25px;">
-                <h2>₹ <%= loginuser.eWalletAmount %></h2>
+                <h2>₹ <%= totalWalletAmount %></h2>
                 <div class="walletBal">Wallet balance</div>
                 <div class="d-flex mt-3" style="justify-content: center;">
-                    <button class="btn btn-light rounded-pill text-primary ps-4 pe-4 fw-bold me-4">Withdraw</button>
-                    <button class="btn btn-outline-light rounded-pill ps-4 pe-4 fw-bold ms-4">Deposit</button>
+                    <a href="withdraw"><button class="btn btn-light rounded-pill text-primary ps-4 pe-4 fw-bold me-4">Withdraw</button></a>
+                    <a href="recharge"><button class="btn btn-outline-light rounded-pill ps-4 pe-4 fw-bold ms-4">Deposit</button></a>
                 </div>
             </div>
 
@@ -84,7 +87,7 @@
                    <div data-v-3299f162="">4</div>
                 </div>
                 <div data-v-3299f162="" class="Betting__C-head">
-                    <div data-v-3299f162="" class="Betting__C-head-g">Green</div>
+                    <div data-v-3299f162="" class="Betting__C-head-g" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Green</div>
                     <div data-v-3299f162="" class="Betting__C-head-p">Violet</div>
                     <div data-v-3299f162="" class="Betting__C-head-r">Red</div>
                 </div>
@@ -157,6 +160,20 @@
              </div>
         </div>
     </div>
+
+
+
+
+
+<div class="offcanvas offcanvas-sm offcanvas-bottom" style="border-top-left-radius: 10px; border-top-right-radius: 10px;" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
+  <div class="offcanvas-header"> 
+    <h5 class="offcanvas-title" id="offcanvasBottomLabel">Offcanvas bottom</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body small">
+    ...
+  </div>
+</div>
 
 
 </body>

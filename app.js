@@ -17,13 +17,47 @@ const apiRoutes = require('./routes/apiRoutes');
 
 app.use('/api', apiRoutes);
 
+// Page Routes
 app.get('/',(req, res)=>{
     res.render('index');
 })
 
 app.get('/wingo',auth,(req, res)=>{
     res.render('wingo',{user:req.userDetail});
+})
+
+app.get('/activity',(req, res)=>{
+    res.render('index');
+})
+
+app.get('/promotion',auth,(req, res)=>{
+    res.render('Promotion');
+})
+
+app.get('/me',auth,(req, res)=>{
     console.log(req.userDetail)
+    res.render('me',{user:req.userDetail});
+})
+
+app.get('/wallet',auth,(req, res)=>{
+    console.log(req.userDetail)
+    res.render('Wallet',{user:req.userDetail});
+})
+
+app.get('/recharge',auth,(req, res)=>{
+    res.render('recharge');
+})
+app.get('/withdraw',auth,(req, res)=>{
+    res.render('Withdraw');
+})
+
+app.get('/messages',auth,(req, res)=>{
+    res.render('Notification');
+})
+
+app.get('/logout',(req, res)=>{
+    res.clearCookie('Token');
+    res.redirect('/');
 })
 
 app.get('/login',(req, res)=>{
@@ -47,6 +81,8 @@ app.get('/register',(req, res)=>{
     const inviteCode = req.query.inviteCode;
     res.render('register',{ inviteCode: inviteCode });
 })
+// Page Routes End
+
 
 const PORT = process.env.PORT || 4400;
 app.listen(PORT, () => {

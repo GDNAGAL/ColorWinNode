@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/Bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/Custom/Css/Style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    
+    <script src="/Bootstrap/bootstrap.min.js"></script>
+    <script src="/Jquery/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div class="main">
+        <div class="container-fluid" style="margin-top:50px; min-height:100vh; background:#f7f8ff">
+            <div class="position-fixed topnavbar bg-primary text-center">
+                <div class="navlogo w-100 text-center">
+                    <!-- <a href="#" onclick="location.href = document.referrer; return false;"><img src="img/UI/icons8-back-50.png" style="cursor: pointer;" alt="" srcset=""></a> -->
+                    <span>Promotion</span>
+                </div>
+                <!-- <div class="content-right align-middle">
+                    <i class="fa fa-bell" aria-hidden="true"></i>
+                </div> -->
+            </div><br>
+            <div class="text-center bg-primary text-white p-2 rounded-3">
+                <h1 class="mt-2 ms-2">₹0.00</h1>
+                <div class="d-flex justify-content-center">
+                    Total Commission
+                </div>
+                <div class="d-flex justify-content-center mt-3">
+                    <button class="btn btn-outline-light rounded-pill btn-sm shadow-none ps-4 pe-4">Transfer To Main Wallet</button>
+                </div>
+            </div>
+            <div class="text-center bg-white rounded-3 shadow-sm mt-3">
+                <div class="d-flex w-100">
+                    <div class="w-50" style="border-right: 1px solid #cccccc;">
+                        <div class="d-flex align-items-center ps-2" style="background-color: #c5c5c5; border-top-left-radius: 8px">
+                            <img height="30px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAMTSURBVHgB7Zg9bxNBEIbfvYQzV0QEkiY0uKIiIsAPwClAAQUSQNT8AhAdFXAICYmOiB+AqCgQUgKREomCVFBBLEGVhqtIBYrkSE4cuGHmdBGOfR+eM44d6x7JOt/Nfey7M7M7u0BOTs6BxqANph5TiQgzIMzyaTG8XOa3lo2PR8uu8dBhMgmYdWm4auEhN/wukt/+zGEh867ZiDJfe0IjVR/TsLBm1vFl6bnZhhILSoLGG3xIbbzA98i98kyUebOGgu/z7zfG/VFMX7pNBShRCwh6HphQPDIRPtPEe9f8OFzAKw6DTTIYoTGchRJVCE25VOQPfUcGDGGSc2Ilynb1KQ3VtnHDB2zysSjC0CIqD1BMT7b0rAkSPZK390yFG/9V/pt/g0FL6EKIVKHTyEySkXt+XY7WIE5AgTYH2hFQTDLuhg0n9RAUqJO419AK8JCdcpLxikujcjQWfkKBVsACMmJMsoCdAZwK7qMOCuCXzyMrPCPHmWQY9Qkn5b9t4zMUqASE4/gctBDm4uqiYA7Y4XJC8PFNhlQoUCfxNsFFSjw3UHYQPNOE1ELc+OvByGPwa+CYrvcFtYAVLsxYxCRa8QT3vMP3xhVzu7WQ9PzAEbxbuqMv5torp7m04De4BJxGOEfwCz0+X5B8iSsdcnJycvqH1GG0buehxKfDdT8tHn/NkyPXRS+X76cPsTJLp83MsQKC5aOFF2HDO4EXLjM9xHzft3DRslCxD2ExTkjkTHzBpQleAq52sPGCrK9XL/O3ooyOjYos9qXMqPJ6uRSW2400eSBcuK8iW5hkYYM9cSbKEzddsisWzvF6eZxn95pTwJtGTzR5gGTPZ/8aLwwHoRrBa9fUlh+YT+yFNe5pe2urOSL2CJCEhXJX4L/AocqeL8WZjwIfuaE1jpcxDu/j9bY9Ani0uYUukbTtIp6I23ZpDKEiusf5JOPutosZxFj99b0CqKsCEvPOcRAkr+RC/fVe8kCigEIVwWLnjyyA6uilfaFEAZIHckzzwIEjF9Bt+k6Ah+7hpd0gxZ38kJOT0z/8BZptEf8cVYBNAAAAAElFTkSuQmCC" alt="">
+                            <span class="align-middle">Direct subordinates</span>
+                        </div>
+                    </div>
+                    <div class="w-50">
+                        <div class="d-flex align-items-center ps-2" style="background-color: #c5c5c5; border-top-right-radius: 8px">
+                            <img height="30px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAMTSURBVHgB7Zg9bxNBEIbfvYQzV0QEkiY0uKIiIsAPwClAAQUSQNT8AhAdFXAICYmOiB+AqCgQUgKREomCVFBBLEGVhqtIBYrkSE4cuGHmdBGOfR+eM44d6x7JOt/Nfey7M7M7u0BOTs6BxqANph5TiQgzIMzyaTG8XOa3lo2PR8uu8dBhMgmYdWm4auEhN/wukt/+zGEh867ZiDJfe0IjVR/TsLBm1vFl6bnZhhILSoLGG3xIbbzA98i98kyUebOGgu/z7zfG/VFMX7pNBShRCwh6HphQPDIRPtPEe9f8OFzAKw6DTTIYoTGchRJVCE25VOQPfUcGDGGSc2Ilynb1KQ3VtnHDB2zysSjC0CIqD1BMT7b0rAkSPZK390yFG/9V/pt/g0FL6EKIVKHTyEySkXt+XY7WIE5AgTYH2hFQTDLuhg0n9RAUqJO419AK8JCdcpLxikujcjQWfkKBVsACMmJMsoCdAZwK7qMOCuCXzyMrPCPHmWQY9Qkn5b9t4zMUqASE4/gctBDm4uqiYA7Y4XJC8PFNhlQoUCfxNsFFSjw3UHYQPNOE1ELc+OvByGPwa+CYrvcFtYAVLsxYxCRa8QT3vMP3xhVzu7WQ9PzAEbxbuqMv5torp7m04De4BJxGOEfwCz0+X5B8iSsdcnJycvqH1GG0buehxKfDdT8tHn/NkyPXRS+X76cPsTJLp83MsQKC5aOFF2HDO4EXLjM9xHzft3DRslCxD2ExTkjkTHzBpQleAq52sPGCrK9XL/O3ooyOjYos9qXMqPJ6uRSW2400eSBcuK8iW5hkYYM9cSbKEzddsisWzvF6eZxn95pTwJtGTzR5gGTPZ/8aLwwHoRrBa9fUlh+YT+yFNe5pe2urOSL2CJCEhXJX4L/AocqeL8WZjwIfuaE1jpcxDu/j9bY9Ani0uYUukbTtIp6I23ZpDKEiusf5JOPutosZxFj99b0CqKsCEvPOcRAkr+RC/fVe8kCigEIVwWLnjyyA6uilfaFEAZIHckzzwIEjF9Bt+k6Ah+7hpd0gxZ38kJOT0z/8BZptEf8cVYBNAAAAAElFTkSuQmCC" alt="">
+                            <span class="align-middle">Team subordinates</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex pb-3">
+                    <div class="w-50 pt-3" style="border-right: 1px solid #cccccc;">
+                        <h5 class="mb-0 mt-2 text-dark">0</h5>
+                        <span>No. of Register</span>
+                        <h5 class="text-danger mb-0 mt-2">0.00</h5>
+                        <span>Total Commision Earned</span>
+                    </div>
+                    <div class="w-50 pt-3">
+                        <h5 class="mb-0 mt-2 text-dark">0</h5>
+                        <span>No. of Register</span>
+                        <h5 class="text-danger mb-0 mt-2">0.00</h5>
+                        <span>Total Commision Earned</span>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between bg-white mt-3 rounded-3 shadow-sm p-2 align-items-center">
+                <div class="d-flex align-items-center">
+                    <img height="30px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAMAAAANIilAAAAAUVBMVEUAAABGgv9HgP9Ggf9Ggv9Ggf9Fgv9Gg/9GgP9Hgf9AgP9Ggf9Ggf9Fgf9Bg/9Hgf9Ggf9Ef/9HhP9DgP9Jgv8qgP9Ggv9Hgf9Hgf9Ggf9Hgf/p0geKAAAAGnRSTlMAZp+yee0+Tc++DJNfWBHegHAyJh8GqPXixd3IpRcAAAEcSURBVEjH7dPLcsIwDIVhy7fEuUNCCnr/B+2GUhnHTk6ZLpjhX+cbaexYfXqly+yrnjL1lZ+bLG18R3v5DD/Toc5bG1d0sOqSYGF3dX5nfPOGoJoIewx7dLCsk2c2E9iMbi3z5Xuyju85W76tnpICP7pRUi8wpa2/WFNaGZM29zShWPY+2DoWOQvhwFEGwjrGGsKkjah9l9NG8Ek/ai1lij4S+Mqi2ya3NYtGgTnK2czzFmUxX1MsbRmzLv80Zfx1eh4MYDbJ4BIuj3YQjkevjGFeJ/uTYRTL/hGPqHUC1yiuBdYoNgJ3KO4EHhyIF/X3vbWSLfBg2YTYST0V0HuSDeGwHQQDN2/VZovep8GrXEPfhjHnxlp3g/r0Qt8lenEL8mi2vgAAAABJRU5ErkJggg==" alt="">
+                    <span class="ms-2 align-middle">Copy invitation code</span>
+                </div>
+                <div class="align-middle">
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between bg-white mt-2 rounded-3 shadow-sm p-2 align-items-center">
+                <div class="d-flex align-items-center">
+                    <img height="30px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAMAAAANIilAAAAAS1BMVEVGgv8AAABHgf9Ggv9Hgf9GhP9Fgf9Ggv9Ggf9Hg/9Ggv9Ig/9Gg/9Egf9Hg/9HgP9Hg/9GgP9Ggv9Igf9Hgf9HgP9Ggv9GgP9Hgf/LeJhVAAAAGHRSTlNmAOwz2QklVrJfTCx5cBq8RsWW9eLFqc+6iLP9AAAA/ElEQVRIx+3Xy46EIBCF4cOlAFGx7+P7P+ks7KQccJSyN3a6/5WbLxBSiQD1Ql+sqD35BrBjlgUaf2ppBaeIqQU8Fek/bIAtDJgMs13FrEvsUIfRlph8LW6owA61GKbAvh7HHBPqMSjDSYJThp0EuwwbCTYHx9frfnzru9tebHugt/vwffq+78EDngU5DgBrEX7oB2YFfRHgsi8+PO6s5s69DJ/HeUGGf/7g4YVt2+5dTvtzcNBcxYS5ub2M3NKEOTnmCUurP/dBcwsTRhlWEdV5xVh83K7A1FQvTAVWrWBhxsKNm5WLa5VlzFHcojFtX9bLnpf1g74x3gX/AgvXLH6IFV4wAAAAAElFTkSuQmCC" alt="">
+                    <span class="ms-2 align-middle">Invitation Rules</span>
+                </div>
+                <div class="align-middle">
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between bg-white mt-2 rounded-3 shadow-sm p-2 align-items-center">
+                <div class="d-flex align-items-center">
+                    <img height="30px"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAMAAAANIilAAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAADPUExURQAAAFCA/0CA/0iA/0WA/0iD/0iA/0mD/0aA/0iE/0aE/0iC/0iA/0aC/0eD/0eC/0SC/0eA/0iD/0aD/0aD/0iB/0iA/0mD/0eD/0eD/0eB/0eC/0eB/0eA/0iC/0eB/0aB/0iC/0eC/0iB/0aB/0eD/0eC/0eA/0eC/0eB/0iC/0iB/0aC/0aC/0eA/0eC/0eB/0iC/0eC/0eB/0eC/0eB/0eB/0iB/0eB/0iB/0eB/0iB/0eB/0eC/0eB/0eB/0iC/0eC/0iB/0eB/0eB/7eUoZ8AAABEdFJOUwAQECAwQEBQUF9fYGBmb3BwcHl5f4CAgoKMjI+QkJWWlp+foKCoqamvsLKysrOzvLy/v8XGxs/Z2d/f4+Ps7O/19fX1WDJaqQAAAhhJREFUeNqV1GF3mjAYhuEglnVz73Ayu03dqDrbrlSnuCLLCnH6/P/fNA6eekIkJFzfbxJCeJnW1TgRAI97Lmvrg8DZrF3uxJDx6zYth+ItszaDSljvvItLMbM0QQ2HWbniqOFbpTHq8R4zcMZQ2OddjkZjpvcOJonLND7BjDv6dc2S2toVUNm/N4clX//CZsJhChf2hoYfybC0cWH7pd+jDcEqErTi6XdtNmna9Qua8aazDu4gMcyVGBVPRBEavZFiAVlGhcj2inZQEZCxnuhm7T2dzDJoTaWhB8maXgVb6Pysj7dUMiy+kWKllfOdfbymC8Fsm9nE+1uq1x897vaQcFedQM99ajKSzy9Wb/ZXMgiiyx8rlmJTnqlfmkuxuVaOLGkRU6hck0mbeISTnjJHvlutrH6rjyhNycICpWtpDHHleultUeBedfZuBFIyuwNEcuMwRQdHMvoMCFYnNh/3IP+HDavjY21aN89S9Fidjjj61OTH4WWUC4fVmuOJ9PxfWPdXmLJ6rjgOtOnysL+nwUG4TGOItFqE4elpQZFGfaIEN0ynk2BZeUcAy3DxO0eZ0gqc6blCrnOU9rtodLog5Y3W68r1DoXsPJtWEF3GDPXz4Dz0/+ZJcD5sqdVxOfIZXbjNyz0b6zmKfEASf5EC3xxmw+MA0sfwS0AUBOEiPQAbj9ny5pCJqZIa++FD8qeQPPiebsP/ATgJqAZDK2DjAAAAAElFTkSuQmCC" />
+                    <span class="ms-2 align-middle">Customer Service</span>
+                </div>
+                <div class="align-middle">
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div data-v-2023d0f1="" class="tabbar__container" style="--481e2ff7: 'Roboto', 'Inter', sans-serif;">
+        <div data-v-2023d0f1="" class="tabbar__container-item" onclick="location.href='/'">
+            <svg data-v-2023d0f1="" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" viewBox="0 0 46 44" class="">
+                <path fill="#949494" fill-rule="evenodd" d="m23.66 5.278-17.9 12.08v25.507h10.08v-10.44a5.04 5.04 0 0 1 5.04-5.04h6.36a5.04 5.04 0 0 1 5.04 5.04v4.38h-3.36v-4.38a1.68 1.68 0 0 0-1.68-1.68h-6.36a1.68 1.68 0 0 0-1.68 1.68v11.16a2.64 2.64 0 0 1-2.64 2.64H5.04a2.64 2.64 0 0 1-2.64-2.64v-26.61a2.64 2.64 0 0 1 1.163-2.188L22.437 2.05a2.16 2.16 0 0 1 2.382-.023L44.514 14.77a2.64 2.64 0 0 1 1.206 2.216v26.598a2.64 2.64 0 0 1-2.64 2.64H30.6v-3.36h11.76V17.379z" clip-rule="evenodd"></path>
+                <path fill="#949494" d="M32.4 44.545a1.68 1.68 0 1 1-3.36 0 1.68 1.68 0 0 1 3.36 0M32.28 36.745a1.68 1.68 0 1 1-3.36 0 1.68 1.68 0 0 1 3.36 0"></path>
+            </svg>
+            <span data-v-2023d0f1="">Home</span>
+        </div>
+        <div data-v-2023d0f1="" class="tabbar__container-item" onclick="location.href='/activity'">
+            <svg data-v-2023d0f1="" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" viewBox="0 0 46 44" class="">
+                <path fill="#949494" fill-rule="evenodd" d="M10.512 5.2h26.975a4.8 4.8 0 0 1 4.796 4.6l.51 12.2h3.203L45.48 9.666A8 8 0 0 0 37.489 2H10.511A8 8 0 0 0 2.52 9.666l-1.17 28A8 8 0 0 0 9.34 46h29.317a8 8 0 0 0 7.993-8.334L46.331 30h-3.203l.326 7.8a4.8 4.8 0 0 1-4.796 5H9.341a4.8 4.8 0 0 1-4.795-5l1.17-28a4.8 4.8 0 0 1 4.796-4.6" clip-rule="evenodd"></path>
+                <path fill="#949494" fill-rule="evenodd" d="M13.92 16.64c.466 5.158 4.8 9.2 10.08 9.2 5.279 0 9.614-4.042 10.078-9.2h-3.522a6.621 6.621 0 0 1-13.113 0z" clip-rule="evenodd"></path>
+                <path fill="#949494" d="M34.092 16.65a1.75 1.75 0 0 1-1.75 1.75c-.967 0-1.795-.784-1.795-1.75 0-.967.828-1.75 1.795-1.75.966 0 1.75.783 1.75 1.75M17.449 16.648c0 .966-.766 1.75-1.733 1.75-.966 0-1.795-.784-1.795-1.75 0-.967.829-1.75 1.795-1.75.967 0 1.733.783 1.733 1.75M46 22a1.6 1.6 0 1 1-3.2 0 1.6 1.6 0 0 1 3.2 0M46.33 30.044a1.6 1.6 0 1 1-3.2 0 1.6 1.6 0 0 1 3.2 0"></path>
+            </svg>
+            <span data-v-2023d0f1="">Activity</span>
+        </div>
+        <div data-v-2023d0f1="" class="tabbar__container-item active" onclick="location.href='/promotion'" >
+            <svg data-v-2023d0f1="" xmlns="http://www.w3.org/2000/svg" width="57" height="49" fill="none" viewBox="0 0 57 49" class="">
+                <path fill="#fff" fill-rule="evenodd" d="M8.939 1.501A4 4 0 0 1 12.062 0h32.155a4 4 0 0 1 3.124 1.501l7.738 9.673c.427.533.749 1.12.968 1.735H.233a5.99 5.99 0 0 1 .967-1.735zM0 16.091h56.28a5.985 5.985 0 0 1-1.277 2.673l-23.79 28.549a4 4 0 0 1-6.146 0l-23.79-28.55A5.984 5.984 0 0 1 0 16.092m20.556 5.936 7.195 10.102a.5.5 0 0 0 .816-.002l7.118-10.093a2.44 2.44 0 0 1 4.435 1.406v.2h-.223c-.326 0-.782.248-1.304.93-.506.663-6.466 8.724-9.651 13.035a.975.975 0 0 1-1.563.007L17.32 24.26s-.394-.62-1.06-.62h-.14v-.195a2.445 2.445 0 0 1 4.436-1.418" clip-rule="evenodd"></path>
+            </svg>
+            <div data-v-2023d0f1="" class="promotionBg"></div>
+            <span data-v-2023d0f1="">Promotion</span>
+        </div>
+        <div data-v-2023d0f1="" class="tabbar__container-item " onclick="location.href='/wallet'">
+            <svg data-v-2023d0f1="" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" viewBox="0 0 46 44" class="wallet">
+                <path stroke="#949494" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.2" d="M3 23c0-5.984 3.526-10.164 9.009-10.868.559-.088 1.139-.132 1.741-.132h21.5c.559 0 1.096.022 1.612.11C42.41 12.77 46 16.972 46 23v11c0 6.6-4.3 11-10.75 11h-21.5C7.3 45 3 40.6 3 34v-2.178"></path>
+                <path stroke="#949494" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.2" d="M46 23.724h-6.452c-2.366 0-4.301 1.862-4.301 4.138S37.182 32 39.548 32H46m-9-20c-.516-.083-1.194 0-1.753 0H14c-.602 0-1.44-.083-2 0 0 0 .731-.648 1.247-1.145l6.99-6.745A7.737 7.737 0 0 1 25.571 2c1.997 0 3.914.758 5.333 2.11l3.764 3.662C36.045 9.076 39.548 12 37 12"></path>
+            </svg>
+            <span data-v-2023d0f1="">Wallet</span>
+        </div>
+        <div data-v-2023d0f1="" class="tabbar__container-item " onclick="location.href='/me'">
+            <svg data-v-2023d0f1="" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" viewBox="0 0 46 44" class="">
+                <path fill="#949494" fill-rule="evenodd" d="M24.08 5.28C13.741 5.28 5.36 13.661 5.36 24c0 10.339 8.381 18.72 18.72 18.72 10.339 0 18.72-8.381 18.72-18.72v-8.76h3.36V24c0 12.194-9.886 22.08-22.08 22.08C11.886 46.08 2 36.195 2 24 2 11.806 11.886 1.92 24.08 1.92h20.28v3.36z" clip-rule="evenodd"></path>
+                <path fill="#949494" d="M46.16 3.6a1.68 1.68 0 1 1-3.36 0 1.68 1.68 0 0 1 3.36 0M46.16 15.12a1.68 1.68 0 1 1-3.36 0 1.68 1.68 0 0 1 3.36 0"></path>
+                <path fill="#949494" fill-rule="evenodd" d="M15.806 29.582a1.68 1.68 0 0 1 2.372.144c1.15 1.298 2.748 2.794 5.462 2.794 2.872 0 4.857-1.428 5.805-2.533a1.68 1.68 0 0 1 2.55 2.186c-1.451 1.695-4.314 3.707-8.355 3.707-4.198 0-6.647-2.424-7.977-3.926a1.68 1.68 0 0 1 .143-2.372" clip-rule="evenodd"></path>
+            </svg>
+            <span data-v-2023d0f1="">Account</span>
+        </div>
+    </div>
+
+</body>
+</html>

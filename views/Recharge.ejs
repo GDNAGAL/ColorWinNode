@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/Bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/Custom/Css/Style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    
+    <script src="/Bootstrap/bootstrap.min.js"></script>
+    <script src="/Jquery/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div class="main">
+        <div class="container-fluid" style="margin-top:50px; min-height:100vh; background:#f7f8ff">
+            <div class="position-fixed topnavbar bg-primary">
+                <div class="navlogo">
+                    <a href="#" onclick="location.href = document.referrer; return false;"><img src="img/UI/icons8-back-50.png" style="cursor: pointer;" alt="" srcset=""></a>
+                    <span>Recharge</span>
+                </div>
+                <!-- <div class="content-right align-middle">
+                    <i class="fa fa-bell" aria-hidden="true"></i>
+                </div> -->
+            </div><br>
+            <div class="walletrecharg">
+                <div class="d-flex">
+                    <img height="20px" class="me-2" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAMAAABiM0N1AAAArlBMVEUAAAD/sjH/zRj/zR//1zbuR0f/zBb/zRf/zhr/zRn/+HfuSUn/zBn/+njvSUn/zCH/+Xf/+XX/+HT/+nj/zBn/zRr/pSL/20H/2T3/1Db/zBf/30j/1zn/7mP/8Gb/3UT/9nL/9W//8mn/82z/7GDuSEj/+Xf/0zP/5lX/5FL/4Uz/6Vv/6Fj/40//613/+HT/vTT/2033kj3/xzz+yzX/rSj/sSr/0kH/sSz/rym/OY7sAAAAFnRSTlMAIsBCE+/v3IFxkZGRgYEy7+/v7rBhR1ORgAAAAh9JREFUWMPtkuly2jAQgA3hyJ2e1BKyMYGC7dbYXEn6/i/W1QqNughsI03+dPIh7SXzDSMcfPD/czXsQfTmqcv5tb+md88lHV/PzYAjXd/L4ZorD02nyw1D98u55oQb98uhDHpOl9PlFvcOl/ONn+Lp4ssZWA6XV+D70DI0vwIPnxZOfL2lnttFA6VV6vqBiL6UNouyFZ+JKDlNWSY1HA6pyB0qmgIJbJOxSnAnZowBk4GK3KGimWI6lcEs7LDChP3hMQMVuUNFz4rZIet2Rqa6PJpSkROxLYrj5xi3A1Rk8BZFcSQXFpoYw+FAT2IcmIeIKHKHiubRfC43xkguDIAa6KkeSXSkIg+IaDVfwWi1khtrALKu1AEs1aisayq6gPV2PyJ0AsOv1qSVMfiI0rdRreh3W6pRa1Gqc0pHyHrUIErboS5om63ffEUv8L0K8vqcKCOk2Tn2UiSLelEz8hft8yzbnhMVRZHBByKEGvCO9ltI50R5cZLj+WvTv5YXuYE2lKpJ1JbxS71onI81WJGGVlW96AJeqz81Ig+Cf5l48D6iH8gEtiomWE90g6VusMOEWCJnbFGIERMl1DmUoVYUevBOIiFECAFPhGyELDDgR00EgqXujkTCAyJiMGAQIApmSgOjpQ7MEl2KMCUR7ZgzOyLasCVjyyUsCTMBUYeqx83wXLEhov5mt3Rit+kT0eNPZ+4Cwl3fTdN/DD5oy19QoJEcy1l/8AAAAABJRU5ErkJggg==">
+                    Balance
+                </div>
+                <h2 class="mt-2 ms-2">₹0.00</h2>
+                <img class="mt-3" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAhCAYAAACbffiEAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAARQSURBVHja3Vhba1RJEO7/lB+xLyus7JO74L6FddmX3QVfll0QH+JDFO+ZiKLiBRU0It4VxxtE6YJkIrl4iZnEJBONZoyGRI1adlmnqdMp27ZDngx8VHXVV9VV0zV9zsR8d3+I2OLQ6VB1gJXC2m0If1RIX2FwrauWNtFaOC1LrYvUuuYxDt9A+G0b41BVcZYHvXerb2JVOjB/80YT4YcNCH11tATSHzXyilWFx30t1Eglo2AbSaokjVT7aYntuMQjpmLzitd7MTpNqvBMnyUcqvI4Tb0UztwCWhmx/LyJ0b9mImSbl0iP1OVeza/V2TfcyB5Vm7KbdIHpYxfISMX8lUtowxGLj2pOMya3WA19S8lI6fi5N4lbLMsmPkMJv4rrPPNp+JFKzLeMmMRmQ9dnNp9G296FsFyU43/ehFCrp0+uNkLc/H0IMX/i1sqb0/UHEE51pxrhT3D9weWMcXxkTUay5AXQcZE+nXTjG44hEDf7Gk7fWhr5p8PfD30j6VzrKsHJ2dRJa6lhUglymrs9SNdvNN4y5LuU896W4hllTDUW14Fvo9QpEkcaEeRMgd7fZLyOJJM/bfpG9EiIzpxGM+MLnX54glHOrJe20Dc8hTZ+ImEjU03Jl3tLRhv5+BGB4PVg7W2Ko8Gv64qndOLQs4Ryqz0z9iv7zeJ7tIR3iwgBxKawSAjieH1rAGHtVqd7+weJES5fCMT1doLiaWjfB7GZ+bcIX8Q7tCRzcOI2wj/7fSzHL5R0j987mCs25hGCnN9ie8OxZnYe4bWDSNEJrxbQevj1rPfNk03i/juKsP2scDwkjqXj2LaT5Avz6xoKzrz3C599AvP3PoSVwupN/FCcmYuj6dB1h7gc89c35U5zTeUi/0bwssNJQoWkgDklv+ZxcTf6EZ69LDAb6tOzaEme7OabK5JL29Va283EDMJk02EmxIReE89+RqEv5ey+gPDrFvJ5vo8p5yAOcYPcIl/wHhLP+oSqQ/gEMzqNMDaNlmSgPyvWz9ESeK1B9rFCH5pE+4srctc58XMOyb3LNUAc4o6xz0mvB3FW9i/XIjyOYbt5PIV2+CmCR7BukAyhuEv4XXfRrm5DuDeKIHbm2ocI5DtyU+8nukiKE6nzlXXzYAJhyOEBYTIE2e9PoiUwh8A29jMC3eHPPQj/H5VY3oNs5CM++7z04FyqFopVuRjCMQPjWB0YQyAMPkFLst+BpWCAfIRxWZdR5l6u8Zf5jBXblRo/0W8O0lrn9jLQSY7HOf3jYjd9o9jpYOlt1MuVwMbj9NtEcq7ZjPDvYfGTva/OPrHlrAW9rgdqpKV3BGEJiGC/ZOspEHI0uocQfmpD2HEBYe9VbqR6r4ipi1S5RFfSQ/EfF//MdovWaBN1llHUte5z7DyPlppZ007N6Nge2SdoMIJYM62m/OeO50dn7IwVHCbUG8c+iHUVPo34h6BPnO3xE+8ZwSrVStPk6/8Eoe4nOONFvlUAAAAASUVORK5CYII=" />
+            </div>
+
+            <div class="bg-white shadow rounded-3 mt-3 p-3">
+                <div class="d-flex">
+                    <img height="25px" class="me-3" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABjUExURQAAAFCA/0CA/0iA/0qA/0WA/0iD/0iA/0aD/0aA/0aE/0iC/0iA/0eD/0eC/0eA/0aD/0iB/0iA/0eC/0eB/0eA/0iC/0eC/0iB/0eC/0iC/0eC/0eB/0iB/0eB/0eB/0eB/0OlXPUAAAAgdFJOUwAQECAwMEBAUFBfYGBvcHB/gICPkJCfn6Cvv7/P39/vM2O3lAAAAXhJREFUeNrdlttugzAQRMfdAk0vtBQ3pMTZnf//yjaxnACyiHmreiRewEee8UoW+MfUg4beoRD3YTwTigzXHploC6L0xjPmG0/u70ZRXhgbB9TkuLr6KUZh+IzR1wW5RQFwX6gsRtk5oEQQvUYpEwZSY5RCIZANtggkgbrtZgykdhfaOiPslCvoy0K4z8dWge1WgbJV8FsFRV7Yd1cOnJEX9phwKBAGTBhKIg3TWSfsdApVeemxwYJXvxNAmoMywzdW+MxO7NlihxyimfOP7+a3i5JhkJyhgC0E15OR3gFinPOInc4iucArwQEd5xyxoOeEHngwztEaU4Q0qYwS0zeA5xJTDY+T+ZvglRJvJw88MYclIcTo7/prxW7CLElIxXxw6OL79R3S6fQqeFsRxiQoSRU8aywRgIo5XpLgSTuvreKQ98iXViQa0pxoOlYBhtx6AaZbWHzILwBGLgmCGw9h8iG2mmNjyp8MT0a+HMqQQyBPvvkL/xQ/kZ5+CJ4otlcAAAAASUVORK5CYII=" />
+                    <h4>Deposit Amount</h4>
+                </div>
+                <div class="d-flex flex-wrap text-center">
+                    <div class="w-25 p-1"><button class="btn btn-outline-secondary shadow-none w-100">100</button></div>
+                    <div class="w-25 p-1"><button class="btn btn-outline-secondary shadow-none w-100">100</button></div>
+                    <div class="w-25 p-1"><button class="btn btn-outline-secondary shadow-none w-100">100</button></div>
+                    <div class="w-25 p-1"><button class="btn btn-outline-secondary shadow-none w-100">100</button></div>
+                    <div class="w-25 p-1"><button class="btn btn-outline-secondary shadow-none w-100">100</button></div>
+                    <div class="w-25 p-1"><button class="btn btn-outline-secondary shadow-none w-100">100</button></div>
+                    <div class="w-25 p-1"><button class="btn btn-outline-secondary shadow-none w-100">100</button></div>
+                    <div class="w-25 p-1"><button class="btn btn-outline-secondary shadow-none w-100">100</button></div>
+                </div>
+                <input type="number" class="form-control mt-3 shadow-none" placeholder="Enter Amount">
+                <button class="btn btn-primary mt-3 w-100 rounded-pill shadow-none">Deposit</button>
+            </div>
+
+
+            <div class="bg-white shadow rounded-3 mt-3 p-3">
+                <div class="d-flex">
+                    <img height="25px" class="me-3" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAFoSURBVHgB7dnBTcNAEAXQv4YDx5RgOoAOcopzpAPoIFCB15gC0gHQAcfk5hLSAS4hJ8gFD+NgJISy3hhiZi3mSZGTrCPt93gdaQdQ6n8z+5x0YWn0coSZqXDFH2P0p1ym5rTLD459J0zu6PL1DXOe/Aj9i9FRa4Akpxl48hCUZPRcH12VcQaYWoqpgoW8uG0wcg1QhJQPf3Hb/IozAAhnGICoZWzwAQZBA0jTANI0gDQNIE0DSNMA0jSANA0gTQNI0wAHVqIj79biJ2NQoEJ2AqyerFkjEHsFMIRskRqLAHkD8JV/CHXyNf8aqPCIgHkrsLCm+P5ds2Mc47A69wZq3grUzQ0ErK0CJb/izcceafF14CdXqi/OCnDvaXvvN9vswXIG2NC2M7PmbfbxJKdgQzgDFPxnxc//m/o998dsckv305zGCIy3S5lYuuazxLs1vO52ztX7FFpaM+dKnDdrYgUZJZRSO70D7RBS1nYgM18AAAAASUVORK5CYII=" />
+                    <h4>Recharge instructions</h4>
+                </div>
+                <ul class="border rounded-3 mb-0 pt-3">
+                    <li class="mb-2">If the transfer time is up, please fill out the deposit form again.</li>
+                    <li class="mb-2">The transfer amount must match the order you created, otherwise the money cannot be credited successfully.</li>
+                    <li class="mb-2">If you transfer the wrong amount, our company will not be responsible for the lost amount!</li>
+                    <li class="mb-2">Note: do not cancel the deposit order after the money has been transferred.</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

@@ -26,11 +26,12 @@ module.exports = function(req, res, next) {
                         if (error) {
                             handleError(err)
                         }else{
-                            if(results[0].length>0){
+                            if (results.length > 0) {
+                                results[0][0].lastlogin = user.loginTime; // Adding the lastlogin key
                                 req.userDetail = results[0];
                                 next();
-                            }else{
-                                handleUnauthorized()
+                            } else {
+                                handleUnauthorized();
                             }
                         }
                     });
@@ -45,7 +46,6 @@ module.exports = function(req, res, next) {
     }
 
     function handleError(error) {
-        console.error('Error:', error);
         res.clearCookie('Token');
         res.redirect('/login?ReturnURL=' + encodeURIComponent(req.originalUrl));
         return;
