@@ -35,8 +35,8 @@ const swalB = Swal.mixin({
 
 
 
-  var xTimer;
-  setGame(1)
+var xTimer;
+setGame(1)
 
 
 
@@ -80,6 +80,8 @@ function start_count_down(min, close){
     $("#countWrapper").hide()
   }
 }
+
+
 $('.gt').on('click',function(){
   $('.gt').removeClass('active')
   $(this).addClass('active')
@@ -141,6 +143,5 @@ function setGame(time, ctime){
               });
         }
     });
-})
-
+  })
 })
