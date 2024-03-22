@@ -91,9 +91,9 @@ exports.register = (req, res) => {
         return res.status(400).json({ Message: `Bad Request` });
     }
 
-    const FullName = "kjhdskghjk";
-    const Email = 'gdnagal1536@gmail.com';
-    const OwnCode = 132435;
+    const FullName = "MEMBER"+ Math.floor(Math.random() * 1000);
+    const Email = null;
+    const OwnCode = Math.floor(Math.random() * 1000000) + Date.now();
     
     //Validate Empty Values
     if (Mobile === '' || Password === '' || ConfirmPassword === '' || InviteCode === '') {
@@ -132,6 +132,11 @@ exports.register = (req, res) => {
                 if (err) {
                     res.status(500).json({ Message: 'Internal Server Error' });
                 } else {
+                    const NewUserID = result.insertId;
+                    const Nquery = 'INSERT INTO `notifications`(`UserID`, `Title`, `Description`, `CreatedAt`) VALUES (?, ?, ?, ?)';
+                    const Nvalues = [NewUserID,'New Registration','Thank you for becoming a beloved member of this platform. We provide many industry leading games. This is the world\'s leading gaming platform. Try the lottery game developed by us. While enjoying the best gaming experience, you can also join unlimited agents and stay at home to earn money.', timeNow];
+                    db.query(Nquery,Nvalues, (err, result) => {
+                    });
                     res.status(201).json({ Message: 'User registered successfully' });
                 }
             });

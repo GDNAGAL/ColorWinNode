@@ -1,7 +1,6 @@
 <% 
-const loginuser = user[0];
+const loginuser = user[0]
 const totalWalletAmount = (loginuser.WalletAmount + loginuser.eWalletAmount).toFixed(2);
-const da = "OK";
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,7 +33,7 @@ const da = "OK";
             </div><br>
             <div class="text-white rounded-3 p-2 text-center bg-primary">
                 <img height="60px" class="me-2" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAMAAABiM0N1AAAArlBMVEUAAAD/sjH/zRj/zR//1zbuR0f/zBb/zRf/zhr/zRn/+HfuSUn/zBn/+njvSUn/zCH/+Xf/+XX/+HT/+nj/zBn/zRr/pSL/20H/2T3/1Db/zBf/30j/1zn/7mP/8Gb/3UT/9nL/9W//8mn/82z/7GDuSEj/+Xf/0zP/5lX/5FL/4Uz/6Vv/6Fj/40//613/+HT/vTT/2033kj3/xzz+yzX/rSj/sSr/0kH/sSz/rym/OY7sAAAAFnRSTlMAIsBCE+/v3IFxkZGRgYEy7+/v7rBhR1ORgAAAAh9JREFUWMPtkuly2jAQgA3hyJ2e1BKyMYGC7dbYXEn6/i/W1QqNughsI03+dPIh7SXzDSMcfPD/czXsQfTmqcv5tb+md88lHV/PzYAjXd/L4ZorD02nyw1D98u55oQb98uhDHpOl9PlFvcOl/ONn+Lp4ssZWA6XV+D70DI0vwIPnxZOfL2lnttFA6VV6vqBiL6UNouyFZ+JKDlNWSY1HA6pyB0qmgIJbJOxSnAnZowBk4GK3KGimWI6lcEs7LDChP3hMQMVuUNFz4rZIet2Rqa6PJpSkROxLYrj5xi3A1Rk8BZFcSQXFpoYw+FAT2IcmIeIKHKHiubRfC43xkguDIAa6KkeSXSkIg+IaDVfwWi1khtrALKu1AEs1aisayq6gPV2PyJ0AsOv1qSVMfiI0rdRreh3W6pRa1Gqc0pHyHrUIErboS5om63ffEUv8L0K8vqcKCOk2Tn2UiSLelEz8hft8yzbnhMVRZHBByKEGvCO9ltI50R5cZLj+WvTv5YXuYE2lKpJ1JbxS71onI81WJGGVlW96AJeqz81Ig+Cf5l48D6iH8gEtiomWE90g6VusMOEWCJnbFGIERMl1DmUoVYUevBOIiFECAFPhGyELDDgR00EgqXujkTCAyJiMGAQIApmSgOjpQ7MEl2KMCUR7ZgzOyLasCVjyyUsCTMBUYeqx83wXLEhov5mt3Rit+kT0eNPZ+4Cwl3fTdN/DD5oy19QoJEcy1l/8AAAAABJRU5ErkJggg==">
-                <h1 class="mt-2 ms-2">₹ <% da %></h1>
+                <h1 class="mt-2 ms-2">₹ <%= (totalWalletAmount) %></h1>
                 <div class="d-flex justify-content-center">
                     Total Balance
                 </div>
@@ -42,13 +41,13 @@ const da = "OK";
             <div class="d-flex justify-content-between text-center">
                 <div class="w-50 pe-2">
                     <div class="bg-white shadow-sm rounded-3 mt-3 p-3">
-                        <h1 style="color: #888;">₹ <% loginuser.WalletAmount.toFixed(2) %></h1>
+                        <h1 style="color: #888;">₹ <%= (loginuser.WalletAmount).toFixed(2) %></h1>
                         <span>Main Wallet</span>
                     </div>
                 </div>
                 <div class="w-50 ps-2">
                     <div class="bg-white shadow-sm rounded-3 mt-3 p-3">
-                        <h1 style="color: #888;">₹ <% loginuser.eWalletAmount.toFixed(2) %></h1>
+                        <h1 style="color: #888;">₹ <%= (loginuser.eWalletAmount).toFixed(2) %></h1>
                         <span>e-Wallet</span>
                     </div>
                 </div>
@@ -117,7 +116,5 @@ const da = "OK";
             <span data-v-2023d0f1="">Account</span>
         </div>
     </div>
-<textarea name="" id="" cols="30" rows="10">
-</textarea>
 </body>
 </html>

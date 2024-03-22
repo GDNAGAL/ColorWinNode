@@ -48,20 +48,25 @@ const totalWalletAmount = (loginuser.WalletAmount + loginuser.eWalletAmount).toF
             </div>
 
             <div class="row shadow-sm mt-3 text-center" style="--bs-gutter-x:0; border-radius: 15px;" >
-                <div class="col-4 m-o gt active">
+              <% games.forEach(function(item, index) { %>
+                <div class="col-<%= Math.floor(12 / games.length) %> m-o gt <%= index === 0 ? 'active' : '' %>" t="<%= item.Time %>" ct="<%= item.BetCloseTime %>">
+                  <div class="gameWinType pb-2"><%= item.Title %><br><span id="gbType"><%= item.Description %></span></div>
+                </div>
+              <% }); %>
+                <!-- <div class="col-4 m-o gt active" t="1">
                     <div class="gameWinType pb-2">Win Go<br>1 Min</div>
                 </div>
-                <div class="col-4 m-0 gt ">
+                <div class="col-4 m-0 gt " t="3">
                     <div class="gameWinType pb-2">Win Go<br>3 Min</div>
                 </div>
-                <div class="col-4 m-0 gt">
+                <div class="col-4 m-0 gt" t="5">
                     <div class="gameWinType pb-2">Win Go<br>5 Min</div>
-                </div>
+                </div> -->
             </div>
 
             <div data-v-9f2c21eb="" class="TimeLeft__C">
                 <div data-v-9f2c21eb="" class="TimeLeft__C-rule">How to play</div>
-                <div data-v-9f2c21eb="" class="TimeLeft__C-name">Win Go 1Min</div>
+                <div data-v-9f2c21eb="" class="TimeLeft__C-name">Win Go <span id="btype">1 Min</span></div>
                 <!-- <div data-v-9f2c21eb="" class="TimeLeft__C-num">
                    <div data-v-9f2c21eb="" class="n3"></div>
                    <div data-v-9f2c21eb="" class="n5"></div>
@@ -71,50 +76,49 @@ const totalWalletAmount = (loginuser.WalletAmount + loginuser.eWalletAmount).toF
                 </div> -->
                 <div data-v-9f2c21eb="" class="TimeLeft__C-id">20240310011121</div>
                 <div data-v-9f2c21eb="" class="TimeLeft__C-text">Time Remaining</div>
-                <div data-v-9f2c21eb="" class="TimeLeft__C-time">
-                   <div data-v-9f2c21eb="">0</div>
-                   <div data-v-9f2c21eb="">0</div>
+                <div data-v-9f2c21eb="" id="demo" class="TimeLeft__C-time">
+                   <!-- <div data-v-9f2c21eb="">0</div> -->
+                   <div data-v-9f2c21eb="">00</div>
                    <div data-v-9f2c21eb="">:</div>
-                   <div data-v-9f2c21eb="">0</div>
-                   <div data-v-9f2c21eb="">4</div>
+                   <div data-v-9f2c21eb="">00</div>
+                   <!-- <div data-v-9f2c21eb="">4</div> -->
                 </div>
              </div>
 
 
              <div data-v-3299f162="" data-v-3b518548="" class="Betting__C" voicetype="1" typeid="1">
-                <div data-v-3299f162="" class="Betting__C-mark" style="display: none;">
-                   <div data-v-3299f162="">1</div>
-                   <div data-v-3299f162="">4</div>
-                </div>
-                <div data-v-3299f162="" class="Betting__C-head">
-                    <div data-v-3299f162="" class="Betting__C-head-g" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Green</div>
-                    <div data-v-3299f162="" class="Betting__C-head-p">Violet</div>
-                    <div data-v-3299f162="" class="Betting__C-head-r">Red</div>
-                </div>
-                <div data-v-3299f162="" class="Betting__C-numC">
-                   <div data-v-3299f162="" class="Betting__C-numC-item0"></div>
-                   <div data-v-3299f162="" class="Betting__C-numC-item1"></div>
-                   <div data-v-3299f162="" class="Betting__C-numC-item2"></div>
-                   <div data-v-3299f162="" class="Betting__C-numC-item3"></div>
-                   <div data-v-3299f162="" class="Betting__C-numC-item4"></div>
-                   <div data-v-3299f162="" class="Betting__C-numC-item5"></div>
-                   <div data-v-3299f162="" class="Betting__C-numC-item6"></div>
-                   <div data-v-3299f162="" class="Betting__C-numC-item7"></div>
-                   <div data-v-3299f162="" class="Betting__C-numC-item8"></div>
-                   <div data-v-3299f162="" class="Betting__C-numC-item9"></div>
-                </div>
-                <!-- <div data-v-3299f162="" class="Betting__C-multiple">
-                   <div data-v-3299f162="" class="Betting__C-multiple-l">Random</div>
-                   <div data-v-3299f162="" class="Betting__C-multiple-r active"> X1</div>
-                   <div data-v-3299f162="" class="Betting__C-multiple-r"> X5</div>
-                   <div data-v-3299f162="" class="Betting__C-multiple-r"> X10</div>
-                   <div data-v-3299f162="" class="Betting__C-multiple-r"> X20</div>
-                   <div data-v-3299f162="" class="Betting__C-multiple-r"> X50</div>
-                   <div data-v-3299f162="" class="Betting__C-multiple-r"> X100</div>
-                </div> -->
-                <div data-v-3299f162="" class="Betting__C-foot">
-                   <div data-v-3299f162="" class="Betting__C-foot-b">Big</div>
-                   <div data-v-3299f162="" class="Betting__C-foot-s bg-primary">Small</div>
+              <div id="betDatacnt">
+                  <div data-v-3299f162="" class="Betting__C-mark"></div>
+                  <div data-v-3299f162="" class="Betting__C-head">
+                      <div data-v-3299f162="" class="Betting__C-head-g">Green</div>
+                      <div data-v-3299f162="" class="Betting__C-head-p">Violet</div>
+                      <div data-v-3299f162="" class="Betting__C-head-r">Red</div>
+                  </div>
+                  <div data-v-3299f162="" class="Betting__C-numC">
+                    <div data-v-3299f162="" class="Betting__C-numC-item0"></div>
+                    <div data-v-3299f162="" class="Betting__C-numC-item1"></div>
+                    <div data-v-3299f162="" class="Betting__C-numC-item2"></div>
+                    <div data-v-3299f162="" class="Betting__C-numC-item3"></div>
+                    <div data-v-3299f162="" class="Betting__C-numC-item4"></div>
+                    <div data-v-3299f162="" class="Betting__C-numC-item5"></div>
+                    <div data-v-3299f162="" class="Betting__C-numC-item6"></div>
+                    <div data-v-3299f162="" class="Betting__C-numC-item7"></div>
+                    <div data-v-3299f162="" class="Betting__C-numC-item8"></div>
+                    <div data-v-3299f162="" class="Betting__C-numC-item9"></div>
+                  </div>
+                  <!-- <div data-v-3299f162="" class="Betting__C-multiple">
+                    <div data-v-3299f162="" class="Betting__C-multiple-l">Random</div>
+                    <div data-v-3299f162="" class="Betting__C-multiple-r active"> X1</div>
+                    <div data-v-3299f162="" class="Betting__C-multiple-r"> X5</div>
+                    <div data-v-3299f162="" class="Betting__C-multiple-r"> X10</div>
+                    <div data-v-3299f162="" class="Betting__C-multiple-r"> X20</div>
+                    <div data-v-3299f162="" class="Betting__C-multiple-r"> X50</div>
+                    <div data-v-3299f162="" class="Betting__C-multiple-r"> X100</div>
+                  </div> -->
+                  <div data-v-3299f162="" class="Betting__C-foot">
+                    <div data-v-3299f162="" class="Betting__C-foot-b">Big</div>
+                    <div data-v-3299f162="" class="Betting__C-foot-s bg-primary">Small</div>
+                  </div>
                 </div>
              </div>
 

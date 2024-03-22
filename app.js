@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const auth = require('./middleware/auth');
 const cookieParser = require('cookie-parser');
+const db = require('./models/database');
 
 dotenv.config();
 
@@ -19,11 +20,21 @@ app.use('/api', apiRoutes);
 
 // Page Routes
 app.get('/',(req, res)=>{
+
     res.render('index');
 })
 
 app.get('/wingo',auth,(req, res)=>{
-    res.render('wingo',{user:req.userDetail});
+    db.query('SELECT * FROM `wingo_games` WHERE `isActive` = ? ORDER BY SortIndex ASC', [1], (err, result) => {
+        if (err) {
+            console.error('Error retrieving notifications:', err);
+            res.status(500).send('Error retrieving notifications');
+            return;
+        }
+        console.log(result)
+        res.render('wingo',{user:req.userDetail,games:result});
+    });
+    
 })
 
 app.get('/activity',(req, res)=>{
@@ -35,12 +46,10 @@ app.get('/promotion',auth,(req, res)=>{
 })
 
 app.get('/me',auth,(req, res)=>{
-    console.log(req.userDetail)
     res.render('me',{user:req.userDetail});
 })
 
 app.get('/wallet',auth,(req, res)=>{
-    console.log(req.userDetail)
     res.render('Wallet',{user:req.userDetail});
 })
 
@@ -51,9 +60,17 @@ app.get('/withdraw',auth,(req, res)=>{
     res.render('Withdraw');
 })
 
-app.get('/messages',auth,(req, res)=>{
-    res.render('Notification');
-})
+app.get('/messages', auth, (req, res) => {
+    db.query('SELECT * FROM `notifications` WHERE `UserID` = ? ORDER BY ID DESC', [req.userDetail[0].ID], (err, result) => {
+        if (err) {
+            console.error('Error retrieving notifications:', err);
+            res.status(500).send('Error retrieving notifications');
+            return;
+        }
+        res.render('Notification', { notifications: result });
+    });
+});
+
 
 app.get('/logout',(req, res)=>{
     res.clearCookie('Token');
