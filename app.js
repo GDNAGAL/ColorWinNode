@@ -31,7 +31,6 @@ app.get('/wingo',auth,(req, res)=>{
             res.status(500).send('Error retrieving notifications');
             return;
         }
-        console.log(result)
         res.render('wingo',{user:req.userDetail,games:result});
     });
     
@@ -67,9 +66,21 @@ app.get('/messages', auth, (req, res) => {
             res.status(500).send('Error retrieving notifications');
             return;
         }
-        res.render('Notification', { notifications: result });
+        // Extract the notification IDs from the result
+        const notificationIDs = result.map(notification => notification.ID);
+        
+        // Update the isRead column for the retrieved notifications
+        db.query('UPDATE `notifications` SET `isRead` = 1 WHERE `ID` IN (?)', [notificationIDs], (updateErr, updateResult) => {
+            if (updateErr) {
+                console.error('Error updating notification isRead status:', updateErr);
+                res.status(500).send('Error updating notification isRead status');
+                return;
+            }
+            res.render('Notification', { notifications: result });
+        });
     });
 });
+
 
 
 app.get('/logout',(req, res)=>{

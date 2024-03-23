@@ -12,38 +12,74 @@ const swalB = Swal.mixin({
                     <div id="SDb" data-v-3299f162="">0</div>
                   </div>
                   <div data-v-3299f162="" class="Betting__C-head">
-                      <div data-v-3299f162="" class="Betting__C-head-g" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Green</div>
-                      <div data-v-3299f162="" class="Betting__C-head-p">Violet</div>
-                      <div data-v-3299f162="" class="Betting__C-head-r">Red</div>
+                      <div data-v-3299f162="" class="Betting__C-head-g showBetModal" bclass="success">Green</div>
+                      <div data-v-3299f162="" class="Betting__C-head-p showBetModal" bclass="primary">Violet</div>
+                      <div data-v-3299f162="" class="Betting__C-head-r showBetModal" bclass="danger">Red</div>
                   </div>
                   <div data-v-3299f162="" class="Betting__C-numC">
-                    <div data-v-3299f162="" class="Betting__C-numC-item0"></div>
-                    <div data-v-3299f162="" class="Betting__C-numC-item1"></div>
-                    <div data-v-3299f162="" class="Betting__C-numC-item2"></div>
-                    <div data-v-3299f162="" class="Betting__C-numC-item3"></div>
-                    <div data-v-3299f162="" class="Betting__C-numC-item4"></div>
-                    <div data-v-3299f162="" class="Betting__C-numC-item5"></div>
-                    <div data-v-3299f162="" class="Betting__C-numC-item6"></div>
-                    <div data-v-3299f162="" class="Betting__C-numC-item7"></div>
-                    <div data-v-3299f162="" class="Betting__C-numC-item8"></div>
-                    <div data-v-3299f162="" class="Betting__C-numC-item9"></div>
+                    <div data-v-3299f162="" class="Betting__C-numC-item0 showBetModal" bclass="danger"></div>
+                    <div data-v-3299f162="" class="Betting__C-numC-item1 showBetModal" bclass="success"></div>
+                    <div data-v-3299f162="" class="Betting__C-numC-item2 showBetModal" bclass="danger"></div>
+                    <div data-v-3299f162="" class="Betting__C-numC-item3 showBetModal" bclass="success"></div>
+                    <div data-v-3299f162="" class="Betting__C-numC-item4 showBetModal" bclass="danger"></div>
+                    <div data-v-3299f162="" class="Betting__C-numC-item5 showBetModal" bclass="success"></div>
+                    <div data-v-3299f162="" class="Betting__C-numC-item6 showBetModal" bclass="danger"></div>
+                    <div data-v-3299f162="" class="Betting__C-numC-item7 showBetModal" bclass="success"></div>
+                    <div data-v-3299f162="" class="Betting__C-numC-item8 showBetModal" bclass="danger"></div>
+                    <div data-v-3299f162="" class="Betting__C-numC-item9 showBetModal" bclass="success"></div>
                   </div>
                   <div data-v-3299f162="" class="Betting__C-foot">
-                    <div data-v-3299f162="" class="Betting__C-foot-b">Big</div>
-                    <div data-v-3299f162="" class="Betting__C-foot-s bg-primary">Small</div>
+                    <div data-v-3299f162="" class="Betting__C-foot-b showBetModal" bclass="warning">Big</div>
+                    <div data-v-3299f162="" class="Betting__C-foot-s bg-primary showBetModal" bclass="primary">Small</div>
                   </div>`;
 
+function canvasData(bootstrapClass){
+  return `<div class="offcanvas-header d-block text-center text-white bg-${bootstrapClass}" style="border-top-left-radius: 10px; border-top-right-radius: 10px;"> 
+            <h5 class="offcanvas-title mb-2" id="offcanvasBottomLabel">Win Go 1 Min</h5>
+            <strong class="bg-white text-${bootstrapClass} pt-1 pb-1 p-4 rounded-pill">Select : <span>Small</span></strong>
+          </div>
+          <div class="offcanvas-body small p-0">
+            <div class="p-3">
+              <div class="d-flex justify-content-between align-items-center">
+                <h5 class="mb-0 align-middle">Balance</h5>
+                <div class="d-flex">
+                  <button class="btn btn-sm shadow-none btn-outline-${bootstrapClass} ms-2">10</button>
+                  <button class="btn btn-sm shadow-none btn-outline-${bootstrapClass} ms-2">100</button>
+                  <button class="btn btn-sm shadow-none btn-outline-${bootstrapClass} ms-2">1000</button>
+                </div>
+              </div>
+              <div class="d-flex justify-content-between align-items-center mt-4">
+                <h5 class="mb-0 align-middle">Quantity</h5>
+                <div class="d-flex">
+                  <button class="btn btn-sm shadow-none btn-outline-${bootstrapClass} ms-2 ps-3 pe-3">-</button>
+                  <input style="width: 50px;" class="shadow-none form-control ms-2 text-center" type="number" value="1">
+                  <button class="btn btn-sm shadow-none btn-outline-${bootstrapClass} ms-2 ps-3 pe-3">+</button>
+                </div>
+              </div>
+              <div class="w-100 align-items-right text-end mt-2">
+                  <button class="btn btn-sm shadow-none btn-outline-${bootstrapClass} ms-2">x1</button>
+                  <button class="btn btn-sm shadow-none btn-outline-${bootstrapClass} ms-2">x5</button>
+                  <button class="btn btn-sm shadow-none btn-outline-${bootstrapClass} ms-2">x10</button>
+                  <button class="btn btn-sm shadow-none btn-outline-${bootstrapClass} ms-2">x20</button>
+                  <button class="btn btn-sm shadow-none btn-outline-${bootstrapClass} ms-2">x50</button>
+                  <button class="btn btn-sm shadow-none btn-outline-${bootstrapClass} ms-2">x100</button>
+              </div>
+              <div class="d-flex mt-3">
+                <input type="checkbox" style="font-size: 20px;" class="form-check-input shadow-none" id="iAgree" checked>
+                <label class="form-check-label ms-2" style="font-size: 20px;" for="iAgree">I Agree <a href="javascript:void(0)">Pre Sale Rules</a></label>
+              </div>
+            </div>
+            <div class="d-flex">
+              <button class="w-50 p-3 m-0 bg-dark text-white" style="border:none" data-bs-dismiss="offcanvas" aria-label="Close">Cancel</button>
+              <button class="w-50 p-3 m-0 bg-${bootstrapClass} text-white" style="border:none">Total Amount 10.00</button>
+            </div>
+          </div>`;
+}
 
-
+//Initial Steps
 var xTimer;
-setGame(1)
-
-
-
-
-
-
-
+setGame($('.gt:eq(0)').attr('t'), $('.gt:eq(0)').attr('ct'))
+//Initial Steps
 
 
 function start_count_down(min, close){
@@ -69,6 +105,7 @@ function start_count_down(min, close){
 
   if (distance <= close) {
     $("#countWrapper").show()
+    $("#offcanvasBottom").offcanvas('hide');
     if(distance.toString().length==1){
       $("#SDa").html(0)
       $("#SDb").html(distance)
@@ -101,6 +138,11 @@ function setGame(time, ctime){
     }, 1e3);
 }
 
+
+$(document).on('click','.showBetModal',function(){
+  $("#offcanvasBottom").html(canvasData($(this).attr('bclass')));
+  $("#offcanvasBottom").offcanvas('show');
+})
 
   $("#loginForm").on("submit",function(e){
     e.preventDefault()

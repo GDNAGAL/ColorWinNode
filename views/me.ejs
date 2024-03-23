@@ -102,7 +102,9 @@ const totalWalletAmount = (loginuser.WalletAmount + loginuser.eWalletAmount).toF
                             <span style="vertical-align: middle;">Notification</span>
                         </div>
                         <div class="" style="vertical-align: middle;" >
-                            <span class="badge rounded-pill bg-danger">5</span>
+                            <% if(loginuser.UnReadNotification>0){ %>
+                                <span class="badge rounded-pill bg-danger"><%= loginuser.UnReadNotification > 9 ? "9+" : loginuser.UnReadNotification %></span>
+                            <% } %>
                             <i class="fa fa-angle-right" aria-hidden="true"></i>
                         </div>
                     </div></a>

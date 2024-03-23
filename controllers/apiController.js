@@ -133,8 +133,8 @@ exports.register = (req, res) => {
                     res.status(500).json({ Message: 'Internal Server Error' });
                 } else {
                     const NewUserID = result.insertId;
-                    const Nquery = 'INSERT INTO `notifications`(`UserID`, `Title`, `Description`, `CreatedAt`) VALUES (?, ?, ?, ?)';
-                    const Nvalues = [NewUserID,'New Registration','Thank you for becoming a beloved member of this platform. We provide many industry leading games. This is the world\'s leading gaming platform. Try the lottery game developed by us. While enjoying the best gaming experience, you can also join unlimited agents and stay at home to earn money.', timeNow];
+                    const Nquery = 'INSERT INTO `notifications`(`UserID`, `Title`, `Description`, `CreatedAt`, `isRead`) VALUES (?, ?, ?, ?, ?)';
+                    const Nvalues = [NewUserID,'New Registration','Thank you for becoming a beloved member of this platform. We provide many industry leading games. This is the world\'s leading gaming platform. Try the lottery game developed by us. While enjoying the best gaming experience, you can also join unlimited agents and stay at home to earn money.', timeNow, 0];
                     db.query(Nquery,Nvalues, (err, result) => {
                     });
                     res.status(201).json({ Message: 'User registered successfully' });
