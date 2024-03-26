@@ -6,8 +6,9 @@ const auth = require('../middleware/apiAuth');
 
 router.post('/User/login', apiController.login);
 router.post('/User/Register', apiController.register);
-router.get('/users', auth, apiController.getUsers);
-router.post('/users', auth, apiController.createUser);
+router.post('/User/GameBetting',auth, apiController.GameBetting);
+router.get('/CRONsJOB', apiController.CRON);
+router.post('/GetGamePeriod', apiController.GetGamePeriod);
 // Define other routes...
 
 module.exports = router;

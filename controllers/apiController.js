@@ -150,19 +150,163 @@ exports.register = (req, res) => {
 };
 
 
-exports.getUsers = (req, res) => {
-    // Logic to fetch users from database
-    // Example:
-    db.query('SELECT * FROM users', (err, rows) => {
+exports.GameBetting = (req, res) => {
+    const { CurrentPeriod, Amount, BetQuatity, GameTypeID, SelectID } = req.body; 
+    const totalBetAmount = Amount * BetQuatity;
+    const user = req.userDetail; 
+
+    //Validate Period
+    db.query('SELECT Period, CreatedAt FROM `wingo_gameid` WHERE `GameTypeID` = ? ORDER BY ID DESC LIMIT 1', [GameTypeID], (err, rows) => {
+        if (err) {
+            return res.status(500).json({ Message: 'Internal Server Error' });
+        }
+        if (rows.length > 0) {
+            const currentGamePeriod=rows[0]
+            if(CurrentPeriod!=currentGamePeriod.Period){
+                return res.status(400).json({ Message: 'Invalid Game Period ID' });
+            }
+
+            db.query('SELECT * FROM `wingo_games` WHERE `ID` = ? LIMIT 1', [GameTypeID], (err, grows) => {
+                if (err) {
+                    return res.status(500).json({ Message: 'Internal Server Error' });
+                }
+                if (rows.length > 0) {
+                    const gameTypeData = grows[0];
+                    if(timeNow){
+                        return res.status(400).json({ Message: 'Invalid Game Period ID' });
+                    }
+                };
+            });
+
+        };
+    });
+
+    
+
+    // Query the database to get the total balance of the user
+    db.query('SELECT SUM(WalletAmount + eWalletAmount) AS AvailableBalance FROM wallets WHERE UserID = ?', [user.ID], (err, rows) => {
         if (err) {
             console.error(err);
-            res.status(500).json({ Message: 'Internal Server Error' });
+            return res.status(500).json({ Message: 'Internal Server Error' });
+        }
+        if (rows.length > 0) {
+            const AvailableBalance = rows[0].AvailableBalance;
+            if (AvailableBalance >= totalBetAmount) {
+
+                res.status(200).json({ Message: 'Bet Successfully Created' });
+            } else {
+                res.status(400).json({ Message: 'Insufficient Balance' });
+            }
         } else {
-            res.json(rows);
+            res.status(404).json({ Message: 'User not found or no balance available' });
         }
     });
 };
 
-exports.createUser = (req, res) => {
-    // Logic to create a new user
+
+exports.GetGamePeriod = (req, res) => {
+    const { GameTypeID } = req.body; 
+    // Query the database to get the total balance of the user
+    db.query('SELECT Period, CreatedAt FROM `wingo_gameid` WHERE `GameTypeID` = ? ORDER BY ID DESC LIMIT 1', [GameTypeID], (err, rows) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ Message: 'Internal Server Error' });
+        }
+        if (rows.length > 0) {
+            res.status(200).json({Status:'OK', data:rows[0]});
+        } else {
+            res.status(404).json({ Message: 'No Game Period Found' });
+        }
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+///CronJob Code
+exports.CRON = (req, res) => {
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    const day = String(currentDate.getDate()).padStart(2, '0');
+    
+
+    db.query('SELECT * FROM `wingo_games`', (err, rows) => {
+        if (err) {
+            return res.status(500).send('Internal Server Error');
+        }
+        rows.forEach(row => {
+            const paddedID = String(row.ID).padStart(2, '0'); // Add leading zero if single digit
+            const lastID = String(row.LastPeriodID).padStart(4, '0'); // Add leading zero if single digit
+            // const firstPeriodId = `${year}${month}${day}${paddedID}0001`;
+            const firstPeriodId = getCurrentPeriodId(row.Time,paddedID);
+            const lastPeriodId = `${year}${month}${day}${paddedID}${lastID}`;
+            db.query("SELECT * FROM `wingo_gameid` WHERE `GameTypeID` = ? ORDER BY ID DESC LIMIT 1",[row.ID], (error, results) => {
+                if (error) throw error;
+            
+                if (results.length === 0) {
+                    db.query("INSERT INTO `wingo_gameid` (`Period`, `GameTypeID`, `CreatedAt`) VALUES (?, ?, ?)", [firstPeriodId, row.ID, timeNow], (error, results) => {
+                        if (error) throw error;
+                        res.status(201).send('Created');
+                        // Handle successful insertion
+                    });
+                } else if (lastPeriodId === results[0].Period) {
+                    db.query("TRUNCATE TABLE `wingo_gameid`", (error, results) => {
+                        if (error) throw error;
+                        // db.query("TRUNCATE TABLE `tbl_result`", (error, results) => {
+                        //     if (error) throw error;
+                            db.query("INSERT INTO `wingo_gameid` (`Period`, `GameTypeID`, `CreatedAt`) VALUES (?, ?, ?)", [firstPeriodId, row.ID, timeNow], (error, results) => {
+                                if (error) throw error;
+                                res.status(201).send('Created');
+                                // Handle successful insertion
+                            });
+                        // });
+                    });
+                } else {
+                    const nextPeriod = parseInt(results[0].Period) + 1;
+                    db.query("INSERT INTO `wingo_gameid` (`Period`, `GameTypeID`, `CreatedAt`) VALUES (?, ?, ?)", [nextPeriod, row.ID, timeNow], (error, results) => {
+                        if (error) throw error;
+                        res.status(201).send('Created');
+                        // Handle successful insertion
+                    });
+                }
+            });
+        });
+    });
 };
+
+
+function getCurrentPeriodId(time) {
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth() + 1; 
+    const day = currentDate.getDate();
+    let paddedID = "0001";
+    // Get current time
+    const currentTime = new Date();
+    const start = new Date(year, month - 1, day); // month - 1 because months are zero-indexed in JavaScript
+    
+    // Calculate difference in milliseconds
+    const differenceInMillis = currentTime - start;
+
+    // Calculate the number of 3-minute intervals
+    const intervals = Math.floor(differenceInMillis / (parseInt(time) * 60 * 1000)); 
+
+    // Increment paddedID accordingly
+    const incrementedID = parseInt(paddedID) + intervals;
+    
+    // Format incrementedID
+    const formattedID = String(incrementedID).padStart(paddedID.length, '0');
+
+    // Construct current period ID
+    const currentPeriodId = `${year}${month}${day}${formattedID}`;
+
+    return currentPeriodId;
+}

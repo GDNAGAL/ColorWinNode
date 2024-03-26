@@ -49,7 +49,7 @@ const totalWalletAmount = (loginuser.WalletAmount + loginuser.eWalletAmount).toF
 
             <div class="row shadow-sm mt-3 text-center" style="--bs-gutter-x:0; border-radius: 15px;" >
               <% games.forEach(function(item, index) { %>
-                <div class="col-<%= Math.floor(12 / games.length) %> m-o gt <%= index === 0 ? 'active' : '' %>" t="<%= item.Time %>" ct="<%= item.BetCloseTime %>">
+                <div class="col-<%= Math.floor(12 / games.length) %> m-o gt <%= index === 0 ? 'active' : '' %>" typeID="<%= item.ID %>" allowedTime="<%= item.Time %>" ct="<%= item.BetCloseTime %>">
                   <div class="gameWinType pb-2"><%= item.Title %><br><span id="gbType"><%= item.Description %></span></div>
                 </div>
               <% }); %>
@@ -74,7 +74,7 @@ const totalWalletAmount = (loginuser.WalletAmount + loginuser.eWalletAmount).toF
                    <div data-v-9f2c21eb="" class="n8"></div>
                    <div data-v-9f2c21eb="" class="n7"></div>
                 </div> -->
-                <div data-v-9f2c21eb="" class="TimeLeft__C-id">20240310011121</div>
+                <div data-v-9f2c21eb="" id="currentGameId" class="TimeLeft__C-id">000000000000</div>
                 <div data-v-9f2c21eb="" class="TimeLeft__C-text">Time Remaining</div>
                 <div data-v-9f2c21eb="" id="demo" class="TimeLeft__C-time">
                    <!-- <div data-v-9f2c21eb="">0</div> -->
@@ -173,7 +173,7 @@ const totalWalletAmount = (loginuser.WalletAmount + loginuser.eWalletAmount).toF
   
 </div>
 
-
+<%- include('common.ejs') %>
 </body>
 <script src="Custom/js/wingo.js"></script>
 </html>
