@@ -283,7 +283,7 @@ exports.CRON = (req, res) => {
 };
 
 
-function getCurrentPeriodId(time) {
+function getCurrentPeriodId(time,PI) {
     const currentDate = new Date();
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth() + 1; 
