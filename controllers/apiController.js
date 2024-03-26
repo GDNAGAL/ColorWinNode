@@ -166,17 +166,17 @@ exports.GameBetting = (req, res) => {
                 return res.status(400).json({ Message: 'Invalid Game Period ID' });
             }
 
-            db.query('SELECT * FROM `wingo_games` WHERE `ID` = ? LIMIT 1', [GameTypeID], (err, grows) => {
-                if (err) {
-                    return res.status(500).json({ Message: 'Internal Server Error' });
-                }
-                if (rows.length > 0) {
-                    const gameTypeData = grows[0];
-                    if(timeNow){
-                        return res.status(400).json({ Message: 'Invalid Game Period ID' });
-                    }
-                };
-            });
+            // db.query('SELECT * FROM `wingo_games` WHERE `ID` = ? LIMIT 1', [GameTypeID], (err, grows) => {
+            //     if (err) {
+            //         return res.status(500).json({ Message: 'Internal Server Error' });
+            //     }
+            //     if (rows.length > 0) {
+            //         const gameTypeData = grows[0];
+            //         if(timeNow){
+            //             return res.status(400).json({ Message: 'Invalid Game Period ID' });
+            //         }
+            //     };
+            // });
 
         };
     });
@@ -186,7 +186,6 @@ exports.GameBetting = (req, res) => {
     // Query the database to get the total balance of the user
     db.query('SELECT SUM(WalletAmount + eWalletAmount) AS AvailableBalance FROM wallets WHERE UserID = ?', [user.ID], (err, rows) => {
         if (err) {
-            console.error(err);
             return res.status(500).json({ Message: 'Internal Server Error' });
         }
         if (rows.length > 0) {
@@ -287,7 +286,9 @@ function getCurrentPeriodId(time,PI) {
     const currentDate = new Date();
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth() + 1; 
-    const day = currentDate.getDate();
+    const day = currentDate.getDate(); 
+    const fmonth = String(currentDate.getMonth() + 1).padStart(2, '0'); 
+    const fday = String(currentDate.getDate() + 1).padStart(2, '0'); 
     let paddedID = "0001";
     // Get current time
     const currentTime = new Date();
@@ -306,7 +307,7 @@ function getCurrentPeriodId(time,PI) {
     const formattedID = String(incrementedID).padStart(paddedID.length, '0');
 
     // Construct current period ID
-    const currentPeriodId = `${year}${month}${day}${formattedID}`;
+    const currentPeriodId = `${year}${fmonth}${fday}${PI}${formattedID}`;
 
     return currentPeriodId;
 }
