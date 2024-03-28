@@ -85,7 +85,7 @@ function canvasData(bootstrapClass){
 
 //Initial Steps
 var xTimer;
-setGame($('.gt:eq(0)').attr('typeID'),$('.gt:eq(0)').attr('allowedTime'), $('.gt:eq(0)').attr('ct'))
+setGame($('.gt.active:eq(0)').attr('typeID'),$('.gt.active:eq(0)').attr('allowedTime'), $('.gt.active:eq(0)').attr('ct'))
 //Initial Steps
 
 
@@ -155,6 +155,10 @@ function start_count_down(min, close){
   }else{
     $("#countWrapper").hide()
   }
+  if (distance <= min * 60 && distance > min * 60 - 5) {
+    GetGamePeriod($('.gt.active:eq(0)').attr('typeID'));
+  }
+
 }
 
 
@@ -172,6 +176,7 @@ $('.gt').on('click',function(){
 
 function setGame(typeID, allowedTime,ctime){
   GetGamePeriod(typeID)
+  GetGameHistory(typeID)
   clearInterval(xTimer)
   $("#betDatacnt").html(betData)
   xTimer = setInterval(function() { 
@@ -253,6 +258,33 @@ function GetGamePeriod(typeID){
       }
     });
 }
+
+function GetGameHistory(typeID){
+  $('.load').removeClass('d-none')
+  let data = {
+    "GameTypeID":typeID
+  };
+  $.ajax({
+    type: "POST",
+    data: JSON.stringify(data),
+    url: '/api/GetGameHistory',
+    headers: {
+        "Content-Type": "application/json",
+        // 'Authorization': 'Bearer ' + getCookie('Token')
+    },
+    contentType: false,       
+    cache: false,             
+    processData:false,
+    success: function(responseData){
+      $('.load').addClass('d-none')
+      $("#currentGameId").html(responseData.data.Period)
+    },
+    error : function(err){
+      $('.load').addClass('d-none')   
+    }
+  });
+}
+
 
 //Handle Bet Form Submition
 $(document).on('submit','#betForm',function(e){

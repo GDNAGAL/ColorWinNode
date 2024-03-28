@@ -1170,7 +1170,7 @@ a{
     position: fixed;
     height: 100vh;
     top: 0;
-    z-index: 400;
+    z-index: 1200;
     width: 100%;
     background-color: #98989884;
     pointer-events: none;
